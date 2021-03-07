@@ -1,0 +1,111 @@
+{% extends 'common.html' %}
+
+{% block common %}
+    {% load static %}
+<body >
+  <link rel="stylesheet" href="{% static 'css/search.css' %}" type="text/css">
+
+ <script type="text/javascript" src="{% static 'js/srch.js' %}"></script>
+    <h1 style="text-align: center;color: darkgreen;background-color: lawngreen "> <img src="{% static 'images/Cryptoalegator.png' %} " height="250" width="250">  CoinGecko Crypto Currency </h1>
+
+  <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <h4 style="text-align: right;">  <button type="submit" class="btn btn-warning" >Logout</button></h4>
+  </form>
+
+
+
+
+
+
+
+
+
+</body>
+    <br>
+    <br>
+
+      <h3 style="color: cornflowerblue;text-align: center;font-size: 30px;font-family: 'Times New Roman'">{{ request.session.username }}</h3>
+
+
+ <table align="center" border="0">
+
+ <tr>
+     <th width="600">
+
+
+
+
+
+
+     </th>
+
+
+    <th>
+
+{#&nbsp;&nbsp;<input type="text" placeholder="Search" id="myInput" name="s1" onkeyup="myFunction() ">#}
+
+{#        <ul id="myUL">#}
+{#        <li><a href="{% url 'detail_cryp' %}?name={{ x.symbol}}">{{ x.symbol }}</a></li>#}
+{#        </ul>#}
+<br>
+    <form method="get" action="{% url 'detail_cryp' %}">
+    {% csrf_token %}
+     <label>
+<input list="crypto" name="mycrypto"  placeholder="search"/></label>
+<datalist id="crypto">
+
+
+             {% for x in search %}
+        <option >{{ x.id }}&nbsp;&nbsp;({{ x.symbol }})</option>
+             {% endfor %}
+</datalist>
+    <button type="submit" class="btn btn-danger">Submit</button>
+    </form>
+</th>
+
+ </tr>
+
+
+ </table>
+
+<br>
+    <br>
+    <table align="center"  border="2">
+       <tr>
+
+           <th width="150">Name</th>
+           <th width="150">Symbol</th>
+           <th width="150">image</th>
+
+           <th width="150">price</th>
+           <th width="150">%change</th>
+           <th width="150">marketcap</th>
+           <th width="150">%marketcapchange</th>
+
+       </tr>
+
+        {% for d in data %}
+         <tr>
+
+           <th>{{ d.name}}</th>
+           <th>{{ d.symbol }}</th>
+             <th><img src="{{ d.image }}" height="30" width="20"></th>
+           <th>{{ d.price }}</th>
+           <th>{{ d.percent_change }}</th>
+         <th>{{ d.market_cap }}</th>
+         <th>{{ d.market_cap_change_24h }}</th>
+
+       </tr>
+
+        {% endfor %}
+
+
+
+
+    </table>
+
+
+{% endblock %}
+
+

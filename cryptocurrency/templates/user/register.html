@@ -1,0 +1,77 @@
+{% extends 'common.html' %}
+{% block common %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+
+    <h3 style="font-size: 20px;color: green;text-align: center;font-family: 'Arial Black'"> New User-Register</h3>
+
+    <form method="post" action="{% url 'signUp' %}">
+    {% csrf_token %}
+    <table align="center">
+
+        {{ register }}
+
+{#        <tr>#}
+{#            <th>{{ register.username.label }}</th>#}
+{#            <th>{{ register.username }}</th>#}
+{##}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>{{ register.password.label }}</th>#}
+{#            <th>{{ register.password }}</th>#}
+{#            <th>{{ register.password.help_text }}</th>#}
+{##}
+{#        </tr>#}
+{#        <tr>#}
+{#            <th>{{ register.confirm_password.label }}</th>#}
+{#            <th>{{ register.confirm_password }}</th>#}
+{#            <th>{{ register.confirm_password.help_text }}</th>#}
+{##}
+{#        </tr>#}
+
+
+
+
+        <tr>
+    <th ><div class="form-group">
+        <div class="col-md-6">
+                      <br>
+                      &nbsp;&nbsp;&nbsp;<a  class="btn btn-outline-success" href="{% url 'login' %}" style="text-align: center">User?login</a>
+
+                  </div>
+
+    </div>
+
+    </th>
+            <th>
+                <div class="form-group">
+                 <div class="col-md-6">
+                      <br>
+                      &nbsp;&nbsp;&nbsp;<button  class="btn btn-outline-primary" href="{% url 'register' %}" style="text-align: center">SignUp</button>
+
+                  </div>
+                </div>
+
+            </th>
+</tr>
+
+
+
+    </table>
+
+    </form>
+
+    {% if error %}
+        <h4 style="color: red;text-align: center;">{{ error }}</h4>
+
+    {% endif %}
+
+    {% for x in messages %}
+        <h2 style="font-size: 25px;font-family: Arial;color: gold;text-align: center">{{ x }}</h2>
+
+    {% endfor %}
+
+
+
+
+{% endblock %}

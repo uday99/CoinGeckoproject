@@ -1,0 +1,52 @@
+
+{% extends 'common.html' %}
+{% block common %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+
+
+    <h1 style="font-size: 25px ;color: red;font-family: 'Arial Black';text-align: center">Reset-password</h1>
+
+    <br><br>
+    <form method="post" action="{% url 'rset' %}?un={{ un }}">
+    {% csrf_token %}
+
+    <table align="center">
+        <tr>
+            <th colspan="2">{{ un }}</th>
+        </tr>
+    <tr>
+
+
+        <th>Password</th>
+        <th><input  type="password"  class="form-control" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   required></th>
+    </tr>
+    <tr><th>Confirm</th>
+        <th><input  type="password"  class="form-control" name="confirmpwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   required></th>
+    </tr>
+
+        <tr>
+
+            <th colspan="2" style="text-align: center"><br><button type="submit" class="btn btn-info">Reset</button></th>
+
+        </tr>
+
+        {% if error %}
+        <tr>
+        <th style="color: red">{{ error }}</th>
+        </tr>
+
+
+        {% endif %}
+
+
+
+    </table>
+    </form>
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,109 @@
+{% extends 'common.html' %}
+{% block common %}
+    {% load static %}
+
+<body style="background-color: coral">
+
+    <h1 style="background-color: blue;color: black;font-size: 50px;font-family: 'Agency FB';text-align: center">Ellenox Private Limited</h1>
+
+    <br>
+    <br>
+
+
+
+<link rel="stylesheet" href="{% static 'css/pwd.css' %}" type="text/css">
+
+
+    <script type="application/javascript" src="{% static 'js/pwd.js' %}" ></script>
+
+
+{#    <script src="{% static 'js/pwd.js' %}" type="text/javascript"></script>#}
+
+
+
+
+<table style="text-align: center">
+<div class="container">
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form class="form-horizontal"  method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+          <div class="form-group">
+            <label class="col-md-4 control-label">Email</label>
+            <div class="col-md-6">
+              <input type="email" class="form-control" name="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Password</label>
+            <div class="col-md-6">
+              <input  type="password" id="pass_log_id" class="form-control" name="password"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"   required>
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password"></span>
+              <br>
+                 <a  href="{% url 'fgpwd' %}">forget password</a>
+            </div>
+              <div class="form-group">
+
+
+
+                  <div class="col-md-6">
+                      <br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Login</button>
+
+                  </div>
+
+
+
+              </div>
+
+
+          </div>
+        </form>
+          <div class="form-group">
+
+
+
+                  <div class="col-md-6">
+                      <br>
+                      &nbsp;&nbsp;<a  class="btn btn-success" href="{% url 'register' %}">New User? Signup</a>
+
+                  </div>
+          </div>
+          {% if error %}
+
+              <div class="form-group">
+                 <div class="col-md-6">
+
+                     <h3 style="text-align: center;color: red;font-size: 15px">{{ error }}</h3>
+
+
+                 </div>
+
+
+
+              </div>
+
+          {% endif %}
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% for x in messages %}
+        <h2 style="font-size: 25px;font-family: Arial;color: gold;text-align: center">{{ x }}</h2>
+
+    {% endfor %}
+
+    </table>
+
+</body>
+
+{% endblock %}

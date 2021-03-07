@@ -1,0 +1,77 @@
+{% extends 'common.html' %}
+{% block common %}
+
+    <body style="background-color: black">
+    <br><br>
+    <h1 style="color: gold">{{ id }}</h1>
+
+
+
+
+    <br>
+    <br>
+    <table border="2">
+    <tr>
+        <th>
+
+            {% for x in news.articles %}
+
+              <br>
+
+            <table border="2" style="background-color: yellow">
+               
+            <tr>
+                <th colspan="0"> <img src="{{ x.urlToImage }}" height="350" width="400"></th>
+
+                <th>
+
+                    <table border="0" style="background-color: yellow" >
+
+
+                        <tr>
+                    <th style="height: 100px;">Title</th>
+                    <th><h2 style="color:red ">{{ x.title }}</h2></th>
+                </tr>
+                <tr>
+                    <th >Author</th>
+                    <th style="color: grey">{{ x.author }}</th>
+
+                </tr>
+
+                <tr>
+                    <th >Description &nbsp;</th>
+                    <th style="color: indianred">&nbsp;&nbsp;{{ x.description }}</th>
+
+                </tr>
+
+
+                    </table>
+
+                </th>
+
+
+            </tr>
+            
+            
+
+
+
+
+            </table>
+
+            {% endfor %}
+
+
+
+        </th>
+
+
+    </tr>
+
+
+
+    </table>
+    </body>
+
+
+{% endblock %}

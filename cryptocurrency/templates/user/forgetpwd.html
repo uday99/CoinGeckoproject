@@ -1,0 +1,32 @@
+{% extends 'common.html' %}
+{% block common %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+
+<br>
+
+    <h3 style="text-align: center;color: red;font-size: 20px;font-family: 'Harlow Solid Italic'">ForgetPassword</h3>
+    <br>
+    <br>
+    <form method="post" action="{% url 'fgpwd' %}">
+    {% csrf_token %}
+    <table align="center">
+    {{ ff }}
+        <tr>
+            <th style="text-align: center" colspan="2">
+                <br>
+                <br>
+                <button type="submit" class="btn btn-success">Send Reset Link</button>
+            </th>
+        </tr>
+        {% if error %}
+        <tr>
+            <th style="color:rosybrown;">{{ error }}</th>
+        </tr>
+        {% endif %}
+
+    </table>
+    </form>
+
+
+{% endblock %}
